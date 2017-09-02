@@ -14,7 +14,7 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(Application.class);
 
-//        application.addListeners(new MyApplicationStartingEventListener());
+        application.addListeners(new MyApplicationStartingEventListener());
         application.addListeners(new MyApplicationEnvironmentPreparedEventListener());
         application.addListeners(new MyApplicationPreparedEventListener());
         application.addListeners(new MyApplicationReadyEventListener());
