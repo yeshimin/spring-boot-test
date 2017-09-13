@@ -1,17 +1,24 @@
 package com.yeshimin.test.springboot;
 
 import com.yeshimin.test.springboot.applicationeventlistener.*;
+import com.yeshimin.test.springboot.applicationexit.ApplicationExitComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @SpringBootApplication
 public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
+
+    @Autowired
+    private ApplicationExitComponent applicationExitComponent;
 
     @PostConstruct
     public void init() {
@@ -27,6 +34,13 @@ public class Application {
         application.addListeners(new MyApplicationReadyEventListener());
         application.addListeners(new MyApplicationFailEventListener());
 
-        application.run(args);
+        ApplicationContext springApplication = (ApplicationContext)application.run(args);
+
+        application.exit(springApplication);
+    }
+
+    @PreDestroy
+    public void onDestroy() {
+        logger.info("Application.onDestroy()");
     }
 }
