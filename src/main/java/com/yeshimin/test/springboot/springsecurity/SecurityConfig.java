@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/springsecurity/login", "/springsecurity/logout").permitAll()
                 .antMatchers("/springsecurity/admindo").hasRole("ADMIN")
                 .antMatchers("/springsecurity/userdo").hasRole("USER")
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
     }
