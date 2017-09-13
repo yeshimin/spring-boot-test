@@ -22,7 +22,7 @@ public class SpringSecurityTestController {
     public Object login() {
         logger.info("{}.login()", getClass().getSimpleName());
 
-        return "logout";
+        return "login";
     }
 
     /**
