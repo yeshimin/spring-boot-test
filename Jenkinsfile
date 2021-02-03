@@ -4,11 +4,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
-		sh 'pwd'
+                sh 'pwd'
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
+                sh 'mvn clean package'
             }
         }
     }
